@@ -118,32 +118,6 @@ const requestListener = (request, response) => {
         response.end()
       }
     })
-    // request.on('end', () => {
-    //   try {
-    //     const id = url.split('/').pop()
-    //     const { title } = JSON.parse(body)
-    //     const index = todosList.findIndex(todo => todo.id === id)
-    //     if ( index !== -1 && title !== undefined ) {
-    //       todosList[index].title = title
-    //       response.writeHead(200, headers)
-    //       response.write(
-    //         JSON.stringify(
-    //           {
-    //             status: 'success',
-    //             message: '更新成功',
-    //             data: todosList
-    //           }
-    //         )
-    //       )
-    //     } else {
-    //       errorHandle(response, headers)
-    //     }
-    //   } catch (error) {
-    //     errorHandle(response, headers)
-    //   } finally {
-    //     response.end()
-    //   }
-    // })
   } else if ( url === '/todo' && method === 'OPTIONS') {
     response.writeHead(200, headers)
     response.end()
@@ -161,6 +135,6 @@ const requestListener = (request, response) => {
 }
 
 const server = http.createServer(requestListener);
-server.listen(3005, () => {
+server.listen( process.env.PORT || 3005, () => {
     console.log('Server is running on port 3005');
 })
